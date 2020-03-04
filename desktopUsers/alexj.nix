@@ -35,6 +35,7 @@
 
   hardware.u2f.enable = true;
 
+  # Sound
   hardware.pulseaudio = {
     enable = true;
     support32Bit = true;
