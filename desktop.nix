@@ -11,7 +11,7 @@
     ark
     kate
     shutter
-  	kdeApplications.okular
+    kdeApplications.okular
     kdiff3
 
     google-chrome
