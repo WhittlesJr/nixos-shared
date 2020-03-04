@@ -6,6 +6,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    plasma-browser-integration
+
     remmina
 
     ark
