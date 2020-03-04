@@ -20,6 +20,7 @@
 
   environment.systemPackages = with pkgs; [
     emacs-all-the-icons-fonts
+    ripgrep
     #rambox
   ];
 
