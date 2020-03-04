@@ -1,5 +1,11 @@
 { lib, config, pkgs, ... }:
 {
+  users.extraUsers = {
+    root = {
+      hashedPassword = lib.fileContents ./users/root.hashedPassword;
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     cowsay
     dnsutils

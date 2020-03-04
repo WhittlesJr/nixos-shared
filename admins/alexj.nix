@@ -1,19 +1,12 @@
 { lib, config, pkgs, ... }:
-let
-  readHashedPassword = file:
-    lib.fileContents file;
-in
 {
   users.extraUsers = {
     alexj = {
       isNormalUser = true;
       uid = 1000;
-      hashedPassword = readHashedPassword ./alexj.hashedPassword;
+      hashedPassword = lib.fileContents ./alexj.hashedPassword;
       description = "Alex Whitt";
       extraGroups = [ "audio" "cdrom" "media" "wireshark" ];
-    };
-    root = {
-      hashedPassword = readHashedPassword ./alexj-root.hashedPassword;
     };
   };
 
