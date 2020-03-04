@@ -33,6 +33,8 @@
     install = true;
   };
 
+  hardware.u2f.enable = true;
+
   hardware.pulseaudio = {
     enable = true;
     support32Bit = true;
