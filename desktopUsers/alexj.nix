@@ -19,13 +19,13 @@
   };
 
   environment.systemPackages = with pkgs; [
-    emacs-all-the-icons-fonts
     ripgrep
     #rambox
   ];
 
   fonts.fonts = with pkgs; [
     source-code-pro
+    emacs-all-the-icons-fonts
   ];
 
   services.emacs = {
