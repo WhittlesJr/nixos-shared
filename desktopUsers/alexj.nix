@@ -4,6 +4,7 @@
     alexj = {
       isNormalUser = true;
       uid = 1000;
+      home = "/home/alexj";
       hashedPassword = lib.fileContents ./alexj.hashedPassword;
       description = "Alex Whitt";
       extraGroups = [ "audio" "cdrom" "media" "wireshark" ];
