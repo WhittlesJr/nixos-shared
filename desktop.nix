@@ -22,10 +22,16 @@
     libreoffice-fresh
   ];
 
-  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl = {
+    driSupport32Bit = true;
+    extraPackages = [
+      pkgs.vaapiIntel # Chromium hardware acceleration
+    ];
+  };
 
   services.xserver = {
     enable = true;
+    exportConfiguration = true;
     displayManager.sddm.enable = true;
     desktopManager.plasma5.enable = true;
   };
