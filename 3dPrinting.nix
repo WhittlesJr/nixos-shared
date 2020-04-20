@@ -13,8 +13,8 @@
   services.octoprint = {
     enable = true;
     plugins = plugins: with plugins; [
-      mqtt titlestatus stlviewer printtimegenius abl-expert
-      gcodeeditor simpleemergencystop
+      mqtt titlestatus stlviewer printtimegenius
+      #abl-expert gcodeeditor simpleemergencystop
     ];
     extraConfig = {
       plugins = {
