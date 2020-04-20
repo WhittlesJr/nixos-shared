@@ -14,6 +14,8 @@
         "wireshark"
         "vboxsf"
         "dialout"
+        "scanner"
+        "lp"
       ];
     };
   };
