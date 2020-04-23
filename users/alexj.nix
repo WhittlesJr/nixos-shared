@@ -16,6 +16,7 @@
         "dialout"
         "scanner"
         "lp"
+        "wheel"
       ];
     };
   };
