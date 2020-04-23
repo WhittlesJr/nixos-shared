@@ -16,17 +16,13 @@
     kdeApplications.okular
     kdiff3
 
-    google-chrome
-    #chromium
+    firefox
 
     libreoffice-fresh
   ];
 
   hardware.opengl = {
     driSupport32Bit = true;
-    extraPackages = [
-      pkgs.vaapiIntel # Chromium hardware acceleration
-    ];
   };
 
   services.xserver = {
