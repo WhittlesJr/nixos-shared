@@ -19,6 +19,8 @@
     firefox
 
     libreoffice-fresh
+
+    gnome3.simple-scan
   ];
 
   hardware.opengl = {
