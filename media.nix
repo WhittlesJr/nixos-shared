@@ -6,7 +6,7 @@
     makemkv
     ccextractor
     mkvtoolnix
-    asunder
+    sound-juicer
     picard
     android-file-transfer
   ];
