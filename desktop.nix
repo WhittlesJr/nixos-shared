@@ -7,6 +7,7 @@
 
   environment.systemPackages = with pkgs; [
     plasma-browser-integration
+    adobe-reader
 
     remmina
 
