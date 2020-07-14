@@ -20,6 +20,8 @@
 
     libreoffice-fresh
 
+    zoom-us
+
     gnome3.simple-scan
   ];
 
