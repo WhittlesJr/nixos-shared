@@ -8,6 +8,7 @@
       hashedPassword = lib.fileContents ./alexj.hashedPassword;
       description = "Alex Whitt";
       extraGroups = [
+        "input"
         "audio"
         "cdrom"
         "media"
