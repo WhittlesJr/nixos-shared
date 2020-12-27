@@ -8,7 +8,7 @@
   environment.systemPackages = with pkgs; [
     plasma-browser-integration
     kde-cli-tools
-    adobe-reader
+    qalculate-gtk
 
     remmina
 
@@ -25,6 +25,10 @@
     zoom-us
 
     gnome3.simple-scan
+
+    plexamp
+    googleearth
+    gimp
   ];
 
   hardware.opengl = {
