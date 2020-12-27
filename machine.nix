@@ -4,7 +4,7 @@
     zfs = {
       enableUnstable = true;
       forceImportAll = false;
-      extraPools = [ "bpool" "tank" ];
+      extraPools = [ "bpool" ];
     };
 
     supportedFilesystems = [ "zfs" ];
@@ -45,14 +45,6 @@
     };
     "/var/cache" = {
       device = "rpool/ROOT/nixos/var/cache";
-      fsType = "zfs";
-    };
-    "/home" = {
-      device = "tank/home";
-      fsType = "zfs";
-    };
-    "/media" = {
-      device = "tank/media";
       fsType = "zfs";
     };
     "/boot" = {
