@@ -50,8 +50,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  console.font = "Lat2-Terminus16";
-  console.keyMap = "us";
+  #console.font = "Lat2-Terminus16";
+  #console.keyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
 
   users.mutableUsers = false;
