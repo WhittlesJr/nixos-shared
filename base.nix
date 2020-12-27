@@ -58,6 +58,8 @@
 
   system.copySystemConfiguration = true;
 
+  boot.loader.grub.memtest86.enable = true;
+
   nix.gc = {
     automatic = true;
     dates = "daily";
