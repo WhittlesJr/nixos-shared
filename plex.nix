@@ -1,3 +1,4 @@
+{ config, lib, pkgs, ... }:
 {
   services.plex = {
     enable = true;
@@ -9,4 +10,8 @@
   users.extraGroups = {
     media = {};
   };
+
+  environment.systemPackages = with pkgs; [
+    sqlite
+  ];
 }

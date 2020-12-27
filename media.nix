@@ -6,8 +6,9 @@
     makemkv
     ccextractor
     mkvtoolnix
-    sound-juicer
+    whipper
     picard
+    handbrake
     android-file-transfer
   ];
 
