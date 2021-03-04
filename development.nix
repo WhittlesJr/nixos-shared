@@ -13,7 +13,6 @@ in
     wineWowPackages.stable
     winetricks
 
-    interceptty
     inotify-tools
 
     # Communication
