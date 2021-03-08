@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 {
+  networking.networkmanager.enable = true;
+
   services.redshift = {
     enable = true;
     temperature.night = 1700;
@@ -34,6 +36,14 @@
   hardware.opengl = {
     driSupport32Bit = true;
   };
+
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+    package = pkgs.pulseaudioFull;
+  };
+
+  sound.enable = true;
 
   services.xserver = {
     enable = true;

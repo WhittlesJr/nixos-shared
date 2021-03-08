@@ -1,11 +1,12 @@
 { lib, config, pkgs, ... }:
 {
+  powerManagement.enable = false; # Because of ZFS
+
+  hardware.enableRedistributableFirmware = true;
+
   boot = {
     loader = {
-      grub = {
-        enable = true;
-        efiSupport = true;
-      };
+      systemd-boot.enable = true;
       efi = {
         canTouchEfiVariables = false;
       };
@@ -21,38 +22,33 @@
     tmpOnTmpfs = true;
   };
 
-  fileSystems."/boot" =
-  { device = "bpool/BOOT/nixos";
-    fsType = "zfs";
-  };
-  
   fileSystems."/" =
-  { device = "rpool/CRYPT/ROOT/nixos";
+  { device = "rpool/crypt/nixos";
     fsType = "zfs";
   };
 
   fileSystems."/home" =
-  { device = "rpool/CRYPT/home";
+  { device = "rpool/crypt/home";
     fsType = "zfs";
   };
 
   fileSystems."/var" =
-  { device = "rpool/CRYPT/ROOT/nixos/var";
+  { device = "rpool/crypt/nixos/var";
     fsType = "zfs";
   };
 
   fileSystems."/nix" =
-  { device = "rpool/CRYPT/ROOT/nixos/nix";
+  { device = "rpool/crypt/nixos/nix";
     fsType = "zfs";
   };
 
   fileSystems."/var/tmp" =
-  { device = "rpool/CRYPT/ROOT/nixos/var/tmp";
+  { device = "rpool/crypt/nixos/var/tmp";
     fsType = "zfs";
   };
 
   fileSystems."/var/cache" =
-  { device = "rpool/CRYPT/ROOT/nixos/var/cache";
+  { device = "rpool/crypt/nixos/var/cache";
     fsType = "zfs";
   };
 
