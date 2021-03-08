@@ -12,5 +12,11 @@
     enableKwallet = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    kwallet-pam
+    kdeFrameworks.kwallet
+  ];
+
+
   services.openssh.enable = true;
 }
