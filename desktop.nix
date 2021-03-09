@@ -2,21 +2,12 @@
 {
   networking.networkmanager.enable = true;
 
-  security.pam.services.kwallet = {
-    name = "kwallet";
-    enableKwallet = true;
-  };
-
   services.redshift = {
     enable = true;
     temperature.night = 1700;
   };
 
   environment.systemPackages = with pkgs; [
-    kwallet-pam
-    kdeFrameworks.kwallet
-    ksshaskpass
-
     plasma-browser-integration
     kde-cli-tools
     qalculate-gtk
