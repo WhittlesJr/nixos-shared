@@ -1,8 +1,9 @@
 { lib, config, pkgs, ... }:
 {
-  powerManagement.enable = false; # Because of ZFS
-
-  hardware.enableRedistributableFirmware = true;
+  hardware = {
+    enableRedistributableFirmware = true;
+    enableAllFirmware = true;
+  };
 
   boot = {
     loader = {
