@@ -17,7 +17,7 @@
     ark
     kate
     shutter
-    kdeApplications.okular
+    okular
     kdiff3
 
     firefox
