@@ -15,14 +15,6 @@ in
 
     inotify-tools
 
-    # Communication
-    teams
-
-
-    # BACnet
-    bacnet-stack
-    setserial
-
     # Clojure
     clj2nix
     clojure

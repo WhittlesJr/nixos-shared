@@ -4,6 +4,10 @@
     # CAN
     can-utils
 
+    # BACnet
+    bacnet-stack
+    setserial
+
     # Sniffing
     tcpdump
   ];
