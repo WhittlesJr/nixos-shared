@@ -31,6 +31,8 @@
     plexamp
     googleearth
     gimp
+
+    pavucontrol
   ];
 
   hardware.opengl = {
@@ -41,6 +43,7 @@
     enable = true;
     support32Bit = true;
     package = pkgs.pulseaudioFull;
+    systemWide = true;
   };
 
   sound.enable = true;
