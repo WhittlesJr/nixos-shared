@@ -18,6 +18,7 @@
         "scanner"
         "lp"
         "wheel"
+        "docker"
       ];
     };
   };
