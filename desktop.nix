@@ -24,6 +24,7 @@
 
     libreoffice-fresh
 
+    discord
     zoom-us
 
     gnome3.simple-scan

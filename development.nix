@@ -20,6 +20,7 @@ in
     clojure
     leiningen
     maven
+    clj-kondo
 
     # C/C++
     cmake
