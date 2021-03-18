@@ -13,13 +13,12 @@ in
   config = {
 
     deployment.targetHost = cfg.hostName;
+    networking.hostName = cfg.hostName;
 
     nix.nixPath = [
       "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
       "nixos-config=/etc/nixos/machines/${cfg.hostName}.nix"
     ];
-
-    networking.hostName = cfg.hostName;
 
     users.extraUsers = {
       root = {
