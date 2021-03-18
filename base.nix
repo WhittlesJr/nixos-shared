@@ -25,7 +25,7 @@
     mkpasswd
     ncdu
     nix-index
-    #nixops
+    nixops
     nixpkgs-review
     nix-index
     nix-prefetch
