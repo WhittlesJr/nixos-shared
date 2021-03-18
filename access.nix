@@ -23,5 +23,7 @@
     mode = "challenge-response";
   };
 
-  programs.ssh.startAgent = false;
+  programs.ssh = {
+    startAgent = false;
+  };
 }
