@@ -12,6 +12,8 @@
     kde-cli-tools
     qalculate-gtk
 
+    phoronix-test-suite
+
     remmina
 
     ark
