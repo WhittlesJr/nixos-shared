@@ -14,9 +14,6 @@ clj2nix = pkgs.callPackage (pkgs.fetchFromGitHub {
 in
 {
   environment.systemPackages = with pkgs; [
-    wineWowPackages.stable
-    winetricks
-
     inotify-tools
 
     # Clojure
@@ -30,7 +27,6 @@ in
     cmake
     gnumake
     gcc
-    boost
     pkgconfig
 
     # Markdown
