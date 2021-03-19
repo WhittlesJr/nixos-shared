@@ -2,7 +2,7 @@
 with lib;
 {
 
-  deployment.targetHost = config.networking.hostName;
+  deployment.targetHost = config.networking.privateIPv4;
 
   nix.nixPath = [
     "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
