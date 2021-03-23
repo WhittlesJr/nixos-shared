@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ nodes, lib, config, pkgs, ... }:
 with lib;
 {
   deployment.targetHost = config.networking.hostName;
@@ -7,6 +7,13 @@ with lib;
     "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
     "nixos-config=/run/current-system/configuration.nix"
   ];
+
+  nix.distributedBuilds = true;
+  nix.buildMachines = mapAttrsToList
+    (name: node: {hostName = node.config.networking.hostName;
+                  system = "x86_64-linux";
+                  maxJobs = node.config.nix.maxJobs;})
+    nodes;
 
   users.extraUsers = {
     root = {
