@@ -2,6 +2,12 @@
 let
   cfgS = config.services.synergy.server;
   cfgC = config.services.synergy.client;
+
+  thisAddress = config.networking.hostName;
+  clientAddress = cfgS.clientNode.config.networking.hostName;
+
+  serverAddress = cfgC.serverNode.config.networking.hostName;
+  serverPort    = cfgC.serverNode.config.services.synergy.server.port;
 in
 with lib;
 {
@@ -19,50 +25,39 @@ with lib;
   };
 
   config = mkMerge [
-    (mkIf cfgS.enable
-      let
-        serverAddress = config.networking.hostName;
-        clientAddress = cfgS.clientNode.config.networking.hostName;
-      in {
-        networking.firewall.allowedTCPPorts = [ cfgS.port ];
+    (mkIf cfgS.enable {
+      networking.firewall.allowedTCPPorts = [ cfgS.port ];
 
-        services.synergy.server = {
-          autoStart = true;
-        };
+      services.synergy.server = {
+        autoStart = true;
+      };
 
-        environment.etc."synergy-server.conf" = {
-          enable = true;
-          text = ''
-            section: screens
-              ${serverAddress}:
-              ${clientAddress}:
-            end
+      environment.etc."synergy-server.conf" = {
+        enable = true;
+        text = ''
+          section: screens
+            ${thisAddress}:
+            ${clientAddress}:
+          end
 
-            section: links
-              ${serverAddress}:
-                ${cfgS.clientScreen} = ${clientName}
-              ${clientAddress}:
-                ${cfgS.serverScreen} = ${serverAddress}
-            end
+          section: links
+            ${thisAddress}:
+              ${cfgS.clientScreen} = ${clientName}
+            ${clientAddress}:
+              ${cfgS.serverScreen} = ${thisAddress}
+          end
 
-            section: options
-              screenSaverSync = true
-            end
-          '';
-        };
-      }
-    )
-
-    (mkIf cfgC.enable
-      let
-        serverAddress = cfgC.serverNode.config.networking.hostName;
-        serverPort    = cfgC.serverNode.config.services.synergy.server.port;
-      in {
-        services.synergy.client = {
-          serverAddress = "${serverAddress}:${serverPort}";
-          autoStart = true;
-        };
-      }
-    )
+          section: options
+            screenSaverSync = true
+          end
+        '';
+      };
+    })
+    (mkIf cfgC.enable {
+      services.synergy.client = {
+        serverAddress = "${serverAddress}:${serverPort}";
+        autoStart = true;
+      };
+    })
   ];
 }
