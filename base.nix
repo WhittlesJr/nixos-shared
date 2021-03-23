@@ -5,7 +5,7 @@ with lib;
 
   nix.nixPath = [
     "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
-    "nixos-config=/etc/nixos/machines/${config.networking.hostName}.nix"
+    "nixos-config=/run/current-system/configuration.nix"
   ];
 
   users.extraUsers = {
