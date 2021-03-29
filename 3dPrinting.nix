@@ -2,9 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     blender
-    (cura.override {
-      plugins = with curaPlugins; [ octoprint ];
-    })
+    slic3r
     platformio
     printrun
     openscad
