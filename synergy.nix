@@ -15,12 +15,12 @@ with lib;
     services.synergy.server = {
       serverScreen = mkOption { type = types.str; };
       clientScreen = mkOption { type = types.str; };
-      clientNode   = mkOption { type = types.anything; };
+      clientNode   = mkOption {};
       port         = mkOption { type = types.port;
                                 default = 24800;  };
     };
     services.synergy.client = {
-      serverNode = mkOption { type = types.anything; };
+      serverNode = mkOption {};
     };
   };
 
