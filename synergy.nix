@@ -55,7 +55,7 @@ with lib;
     })
     (mkIf cfgC.enable {
       services.synergy.client = {
-        serverAddress = "${serverAddress}:${serverPort}";
+        serverAddress = "${serverAddress}:${toString serverPort}";
         autoStart = true;
       };
     })
