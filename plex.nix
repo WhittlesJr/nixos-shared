@@ -3,6 +3,7 @@
   services.plex = {
     enable = true;
     openFirewall = true;
+    dataDir = "/media/.plex";
   };
 
   users.extraUsers.plex.extraGroups = [ "media" ];
