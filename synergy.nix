@@ -42,7 +42,7 @@ with lib;
 
           section: links
             ${thisAddress}:
-              ${cfgS.clientScreen} = ${clientName}
+              ${cfgS.clientScreen} = ${clientAddress}
             ${clientAddress}:
               ${cfgS.serverScreen} = ${thisAddress}
           end
