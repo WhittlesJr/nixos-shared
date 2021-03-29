@@ -36,6 +36,8 @@
     gimp
 
     pavucontrol
+
+    yubioath-desktop
   ];
 
   hardware.opengl = {
