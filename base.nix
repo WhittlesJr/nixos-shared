@@ -51,6 +51,7 @@ with lib;
     ntfs3g
     openssl
     p7zip
+    unrar
     parted
     patchutils
     pciutils
