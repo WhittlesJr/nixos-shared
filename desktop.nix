@@ -34,6 +34,7 @@
     plexamp
     googleearth
     gimp
+    posterazor
 
     pavucontrol
 
