@@ -61,14 +61,8 @@
     enable = true;
     exportConfiguration = true;
     displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
-  };
-
-  nixpkgs.config = {
-    vivaldi = {
-      proprietaryCodecs = true;
-      enableWideVine = true;
+    desktopManager.plasma5 = {
+      enable = true;
     };
   };
-
 }
