@@ -23,6 +23,7 @@
     kdiff3
 
     firefox
+    google-chrome
 
     libreoffice-fresh
 
