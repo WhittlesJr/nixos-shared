@@ -11,17 +11,11 @@
   services.octoprint = {
     enable = true;
     plugins = plugins: with plugins; [
-      mqtt titlestatus stlviewer printtimegenius
-      #abl-expert gcodeeditor simpleemergencystop
+      titlestatus
+      printtimegenius
     ];
     extraConfig = {
       plugins = {
-        ABL_Expert = {
-          eeprom_save = false;
-          max_index = 2;
-          preheat_bed_only = true;
-          preheat_selected = "PLA";
-        };
         temperature = {
           profiles = [{
             bed = 100;
