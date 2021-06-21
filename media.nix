@@ -1,16 +1,18 @@
 { lib, config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    vlc
-    makemkv
+    vlc                      # Vido + audio playing
+    audacity                 # Audio recording and editing
+    makemkv                  # Blu-ray / DVD ripping
     ccextractor
     mkvtoolnix
     whipper
     picard
-    handbrake
+    handbrake                # Video compression
     android-file-transfer
   ];
 
+  # Adds blu-ray support to VLC
   nixpkgs.overlays = [
     (
       self: super: {
