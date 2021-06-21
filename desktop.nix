@@ -36,20 +36,23 @@
     gimp
     posterazor
 
-    pavucontrol
-
     yubioath-desktop
+
+    plasma-pa
+
   ];
 
   hardware.opengl = {
     driSupport32Bit = true;
   };
 
-  hardware.pulseaudio = {
+  services.pipewire = {
     enable = true;
-    support32Bit = true;
-    package = pkgs.pulseaudioFull;
-    systemWide = true;
+    pulse.enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
   };
 
   sound.enable = true;
