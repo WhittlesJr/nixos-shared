@@ -33,6 +33,7 @@
     gnome3.simple-scan
 
     plexamp
+    openvpn
     googleearth
     gimp
     posterazor
