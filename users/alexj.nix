@@ -8,8 +8,11 @@
       hashedPassword = lib.fileContents ./alexj.hashedPassword;
       description = "Alex Whitt";
       extraGroups = [
+        "networkmanager"
         "input"
         "audio"
+        "video"
+        "plex"
         "cdrom"
         "media"
         "wireshark"
