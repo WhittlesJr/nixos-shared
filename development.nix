@@ -13,8 +13,12 @@ clj2nix = pkgs.callPackage (pkgs.fetchFromGitHub {
 
 in
 {
+  systemd.coredump.enable = true;
+
   environment.systemPackages = with pkgs; [
     inotify-tools
+    binutils-unwrapped
+    patchelf
 
     # Clojure
     clj2nix
