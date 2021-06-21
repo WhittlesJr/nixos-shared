@@ -8,7 +8,7 @@ with lib;
     "nixos-config=/run/current-system/configuration.nix"
   ];
 
-  nix.distributedBuilds = true;
+  #nix.distributedBuilds = true;
   nix.buildMachines = mapAttrsToList
     (name: node: {hostName = node.config.networking.hostName;
                   system = "x86_64-linux";
