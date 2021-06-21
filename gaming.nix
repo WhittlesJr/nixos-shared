@@ -17,12 +17,13 @@
     evtest
 
     lutris
-    steam
     #linux-steam-integration
     protontricks
 
 
   ];
+
+  programs.steam.enable = true;
 
   services.udev.extraRules = ''
     # Nintendo Switch Pro Controller over USB hidraw
