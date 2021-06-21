@@ -29,6 +29,7 @@ with lib;
     dnsutils
     fortune
     git
+    file
     gitAndTools.gitflow
     gnupg
     gparted
