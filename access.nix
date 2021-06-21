@@ -4,6 +4,11 @@
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
+  environment.systemPackages = with pkgs; [
+    yubico-pam
+    yubikey-personalization
+  ];
+
   # Depending on the details of your configuration, this section might be
   # necessary or not; feel free to experiment
   environment.shellInit = ''
@@ -31,3 +36,4 @@
     enable = true;
   };
 }
+
