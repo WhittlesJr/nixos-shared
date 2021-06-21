@@ -1,26 +1,29 @@
 { config, pkgs, ... }:
 {
   # A dependency of lutris, and was recently marked "insecure" (2020-05-05)
-  nixpkgs.config.permittedInsecurePackages = [
-    "p7zip-16.02"
-  ];
+  #nixpkgs.config.permittedInsecurePackages = [
+  #  "p7zip-16.02"
+  #];
 
   environment.systemPackages = with pkgs; [
-    vulkan-headers
-    wine
-    geckodriver
-    mono
+    # proton-tkg
+    # protontricks
+    #autoconf
+    #flex
+    #bison
+    #xorg.libX11
+
+    #vulkan-headers
+    #wine
+    #geckodriver
+    #mono
 
     discord
 
     xboxdrv
     evtest
 
-    lutris
-    #linux-steam-integration
-    protontricks
-
-
+    #lutris
   ];
 
   programs.steam.enable = true;
