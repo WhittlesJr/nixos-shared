@@ -16,6 +16,8 @@
 
     remmina
 
+    vulkan-tools
+
     ark
     kate
     shutter
