@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     discord
-    xboxdrv
+    xboxdrv   # For Nintendo Switch pro controllers
     evtest
   ];
 
