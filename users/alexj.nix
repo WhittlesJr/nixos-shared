@@ -28,6 +28,8 @@
 
   environment.systemPackages = with pkgs; [
     ripgrep
+    slack
+    #everdo
     #rambox
   ];
 
