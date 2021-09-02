@@ -13,14 +13,14 @@
   ];
 
   # Adds blu-ray support to VLC
-  nixpkgs.overlays = [
-    (
-      self: super: {
-        libbluray = super.libbluray.override {
-          withAACS = true;
-          withBDplus = true;
-        };
-      }
-    )
-  ];
+  #nixpkgs.overlays = [
+  #  (
+  #    self: super: {
+  #      libbluray = super.libbluray.override {
+  #        withAACS = true;
+  #        withBDplus = true;
+  #      };
+  #    }
+  #  )
+  #];
 }
