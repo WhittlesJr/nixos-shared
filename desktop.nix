@@ -2,11 +2,6 @@
 {
   networking.networkmanager.enable = true;
 
-  services.redshift = {
-    enable = true;
-    temperature.night = 1700;
-  };
-
   environment.systemPackages = with pkgs; [
     plasma-browser-integration
     kde-cli-tools
