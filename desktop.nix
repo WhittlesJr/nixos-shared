@@ -7,6 +7,9 @@
     kde-cli-tools
     qalculate-gtk
 
+    pavucontrol
+    jack2
+
     phoronix-test-suite
 
     remmina
