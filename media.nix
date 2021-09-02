@@ -4,10 +4,10 @@
     vlc                      # Vido + audio playing
     audacity                 # Audio recording and editing
     makemkv                  # Blu-ray / DVD ripping
-    ccextractor
+    ccextractor              # For makemkv
     mkvtoolnix
     whipper
-    picard
+    picard                   # Music library management
     handbrake                # Video compression
     android-file-transfer
   ];
