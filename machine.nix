@@ -6,6 +6,7 @@
   };
 
   services.fwupd.enable = true;
+  services.thermald.enable = true;
 
   boot = {
     loader = {

@@ -42,6 +42,7 @@
 
     plasma-pa
 
+    libsForQt5.qt5.qtgraphicaleffects # For Thermal Monitor widget
   ];
 
   hardware.opengl = {
