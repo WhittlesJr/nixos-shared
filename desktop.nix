@@ -22,6 +22,8 @@
     okular
     kdiff3
 
+    posterazor
+
     firefox
     google-chrome
 
