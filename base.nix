@@ -26,6 +26,7 @@ with lib;
 
   environment.systemPackages = with pkgs; [
     cowsay
+    dmidecode
     dnsutils
     fortune
     git
@@ -75,6 +76,8 @@ with lib;
   users.mutableUsers = false;
 
   system.copySystemConfiguration = true;
+
+  services.thermald.enable = true;
 
   nix.gc = {
     automatic = true;

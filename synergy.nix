@@ -46,10 +46,6 @@ with lib;
             ${clientAddress}:
               ${cfgS.serverScreen} = ${thisAddress}
           end
-
-          section: options
-            screenSaverSync = true
-          end
         '';
       };
     })

@@ -36,6 +36,7 @@
   fonts.fonts = with pkgs; [
     source-code-pro
     emacs-all-the-icons-fonts
+    junicode
   ];
 
   services.emacs = {

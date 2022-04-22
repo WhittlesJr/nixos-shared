@@ -3,8 +3,6 @@
   networking.networkmanager.enable = true;
 
   environment.systemPackages = with pkgs; [
-    plasma-browser-integration
-    kde-cli-tools
     qalculate-gtk
 
     pavucontrol
@@ -18,14 +16,13 @@
 
     ark
     kate
-    shutter
     okular
     kdiff3
 
     posterazor
 
     firefox
-    google-chrome
+    chromium
 
     libreoffice-fresh
 
@@ -41,10 +38,6 @@
     posterazor
 
     yubioath-desktop
-
-    plasma-pa
-
-    libsForQt5.qt5.qtgraphicaleffects # For Thermal Monitor widget
   ];
 
   hardware.opengl = {
@@ -69,6 +62,7 @@
     displayManager.sddm.enable = true;
     desktopManager.plasma5 = {
       enable = true;
+      runUsingSystemd = true;
     };
   };
 }
