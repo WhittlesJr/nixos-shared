@@ -22,10 +22,16 @@
     enableSSHSupport = true;
   };
 
-  security.pam.yubico = {
-    enable = true;
-    debug = true;
-    mode = "challenge-response";
+  security.pam = {
+    services.login.gnupg = {
+      storeOnly = true;
+      enable = true;
+    };
+    yubico = {
+      enable = true;
+      debug = true;
+      mode = "challenge-response";
+    };
   };
 
   programs.ssh = {
@@ -36,4 +42,3 @@
     enable = true;
   };
 }
-

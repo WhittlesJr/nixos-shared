@@ -56,6 +56,11 @@
 
   sound.enable = true;
 
+  security.pam.services.sddm.gnupg = {
+    storeOnly = true;
+    enable = true;
+  };
+
   services.xserver = {
     enable = true;
     exportConfiguration = true;
