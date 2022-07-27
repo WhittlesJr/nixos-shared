@@ -4,9 +4,9 @@
     zfs = {
       requestEncryptionCredentials = true;
       forceImportAll = false;
-      zed = {
-        enableMail = true;
-      };
+      #zed = {
+      #  enableMail = true;
+      #};
     };
     supportedFilesystems = [ "zfs" ];
   };
@@ -46,26 +46,26 @@
     fsType = "zfs";
   };
 
-  programs.msmtp = {
-    enable = true;
-    setSendmail = true;
-    defaults = {
-      aliases = "/etc/aliases";
-      port = 465;
-      tls_trust_file = "/etc/ssl/certs/ca-certificates.crt";
-      tls = "on";
-      auth = "login";
-      tls_starttls = "off";
-    };
-    accounts = {
-      default = {
-        host = "smtp.gmail.com";
-        port = 587;
-        passwordeval = "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.mail/.msmtp-credentials.gpg";
-        from = "alex.joseph.whitt@gmail.com";
-        user = "alex.joseph.whitt";
-      };
-    };
-  };
+  #programs.msmtp = {
+  #  enable = true;
+  #  setSendmail = true;
+  #  defaults = {
+  #    aliases = "/etc/aliases";
+  #    port = 465;
+  #    tls_trust_file = "/etc/ssl/certs/ca-certificates.crt";
+  #    tls = "on";
+  #    auth = "login";
+  #    tls_starttls = "off";
+  #  };
+  #  accounts = {
+  #    default = {
+  #      host = "smtp.gmail.com";
+  #      port = 587;
+  #      passwordeval = "gpg --quiet --for-your-eyes-only --no-tty --decrypt ~/.mail/.msmtp-credentials.gpg";
+  #      from = "alex.joseph.whitt@gmail.com";
+  #      user = "alex.joseph.whitt";
+  #    };
+  #  };
+  #};
 
 }
