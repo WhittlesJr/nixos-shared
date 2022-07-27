@@ -15,7 +15,7 @@
     enable = true;
     plugins = plugins: with plugins; [
       titlestatus
-      printtimegenius
+      #printtimegenius
     ];
     extraConfig = {
       plugins = {

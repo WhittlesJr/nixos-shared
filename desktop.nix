@@ -19,6 +19,8 @@
     okular
     kdiff3
 
+    xournal
+
     posterazor
 
     firefox
@@ -33,7 +35,7 @@
 
     plexamp
     openvpn
-    googleearth
+    #googleearth
     gimp
     posterazor
 
