@@ -24,6 +24,12 @@ with lib;
     };
   };
 
+  # For nixops. See https://github.com/NixOS/nixops/issues/1521
+  nixpkgs.config.permittedInsecurePackages = [
+    "python2.7-urllib3-1.26.2"
+    "python2.7-pyjwt-1.7.1"
+  ];
+
   environment.systemPackages = with pkgs; [
     cowsay
     dmidecode
