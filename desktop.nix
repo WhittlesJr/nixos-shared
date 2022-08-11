@@ -5,6 +5,8 @@
   environment.systemPackages = with pkgs; [
     qalculate-gtk
 
+    gnome.pomodoro
+
     pavucontrol
     jack2
 
