@@ -21,6 +21,7 @@ in
     pkgs.discord
     pkgs.xboxdrv   # For Nintendo Switch pro controllers
     pkgs.evtest
+    pkgs.protontricks
     steam-proton-ge
   ];
 
