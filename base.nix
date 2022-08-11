@@ -30,6 +30,8 @@ with lib;
     "python2.7-pyjwt-1.7.1"
   ];
 
+  virtualisation.docker.enable = true;
+
   environment.systemPackages = with pkgs; [
     cowsay
     dmidecode
