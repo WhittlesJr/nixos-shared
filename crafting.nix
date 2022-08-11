@@ -3,7 +3,7 @@ let
   inkscape = pkgs.inkscape-with-extensions.override {
     inkscapeExtensions = [
       #pkgs.inkscape-extensions.inkcut
-      pkgs.inkscape-extensions.silhouette
+      #pkgs.inkscape-extensions.silhouette
     ];
   };
 in
