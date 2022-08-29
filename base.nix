@@ -32,7 +32,11 @@ with lib;
 
   virtualisation.docker.enable = true;
 
+  services.mullvad-vpn.enable = true;
+
   environment.systemPackages = with pkgs; [
+    mullvad
+    mullvad-vpn
     cowsay
     dmidecode
     dnsutils
