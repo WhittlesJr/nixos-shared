@@ -16,6 +16,12 @@
     autoScrub.enable = true;
   };
 
+  swapDevices = [
+    {
+      device = "/dev/zvol/rpool/swap";
+    }
+  ];
+
   fileSystems."/" = {
     device = "rpool/crypt/nixos";
     fsType = "zfs";
