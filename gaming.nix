@@ -1,5 +1,20 @@
 { config, pkgs, ... }:
 let
+  #steam-proton-tkg =
+  #  pkgs.stdenv.mkDerivation rec {
+  #    pname = "proton-tkg";
+  #    version = "7.6.r12.g51472395";
+
+  #    src = pkgs.fetchurl {
+  #      url = "https://github.com/Frogging-Family/wine-tkg-git/releases/download/${version}/proton_tkg_${version}.release.tar.gz";
+  #      sha256 = "037mcsxwagfdwpc79z31lravh93mlz4xwna6fv80bivqns4r79kh";
+  #    };
+
+  #    buildCommand = ''
+  #      mkdir -p $out
+  #      tar -C $out --strip=1 -x -f $src
+  #    '';
+  #  };
   steam-proton-ge =
     pkgs.stdenv.mkDerivation rec {
       pname = "proton-ge-custom";
