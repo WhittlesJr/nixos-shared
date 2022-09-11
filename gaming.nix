@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
   #steam-proton-tkg =
   #  pkgs.stdenv.mkDerivation rec {
@@ -15,6 +15,68 @@ let
   #      tar -C $out --strip=1 -x -f $src
   #    '';
   #  };
+  steamtinkerlaunch =
+    pkgs.stdenv.mkDerivation rec {
+      pname = "steamtinkerlaunch";
+      version = "11.0";
+
+      src = pkgs.fetchurl {
+        url = "https://github.com/frostworx/steamtinkerlaunch/archive/refs/tags/v${version}.tar.gz";
+        sha256 = "11rffqa5xhvf7hxkkxqgvf9ngksv91wd1l3wnysgclcccp78q5sa";
+      };
+
+      nativeBuildInputs = with pkgs; [
+        makeWrapper
+      ];
+      postInstall = ''
+        substituteInPlace $out/bin/steamtinkerlaunch --replace \
+          'PROGCMD="''${0##*/}"' 'PROGCMD="steamtinkerlaunch"'
+
+        wrapProgram $out/bin/steamtinkerlaunch \
+          --prefix PATH : ${lib.makeBinPath [
+            pkgs.git
+            pkgs.gawk
+            pkgs.bash
+            pkgs.procps
+            pkgs.unzip
+            pkgs.wget
+            pkgs.xdotool
+            pkgs.xorg.xprop
+            pkgs.xorg.xrandr
+            pkgs.unixtools.xxd
+            pkgs.xorg.xwininfo
+            pkgs.yad
+            pkgs.scanmem
+            pkgs.gamemode
+            pkgs.gamescope
+            pkgs.gdb
+            pkgs.imagemagick
+            pkgs.innoextract
+            pkgs.jq
+            pkgs.libnotify
+            pkgs.mangohud
+            pkgs.nettools
+            pkgs.p7zip
+            pkgs.pev
+            pkgs.replay-sorcery
+            pkgs.rsync
+            pkgs.scummvm
+            pkgs.strace
+            pkgs.usbutils
+            pkgs.vkBasalt
+            pkgs.wine
+            pkgs.winetricks
+            pkgs.xdg-utils
+          ]}
+      '';
+
+      propagatedBuildInputs = with pkgs; [
+      ];
+
+      makeFlags = [
+        "PREFIX=$(out)"
+      ];
+    };
   steam-proton-ge =
     pkgs.stdenv.mkDerivation rec {
       pname = "proton-ge-custom";
@@ -38,6 +100,7 @@ in
     pkgs.evtest
     pkgs.protontricks
     steam-proton-ge
+    steamtinkerlaunch
   ];
 
   programs.steam.enable = true;
