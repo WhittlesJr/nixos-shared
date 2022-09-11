@@ -9,6 +9,7 @@ let
 in
 {
   environment.systemPackages = [
-    inkscape
+    #inkscape
+    pkgs.seamly2d
   ];
 }
