@@ -99,6 +99,9 @@ in
     pkgs.xboxdrv   # For Nintendo Switch pro controllers
     pkgs.evtest
     pkgs.protontricks
+    (pkgs.dwarf-fortress-packages.dwarf-fortress-full.override {
+       theme = "spacefox";
+    })
     steam-proton-ge
     steamtinkerlaunch
   ];
