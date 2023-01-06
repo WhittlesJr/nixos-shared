@@ -12,7 +12,7 @@ with lib;
   nix.buildMachines = mapAttrsToList
     (name: node: {hostName = node.config.networking.hostName;
                   system = "x86_64-linux";
-                  maxJobs = node.config.nix.maxJobs;})
+                  maxJobs = node.config.nix.settings.max-jobs;})
     nodes;
 
   users.extraUsers = {
