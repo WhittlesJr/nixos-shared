@@ -20,6 +20,9 @@ in
     binutils-unwrapped
     patchelf
 
+    yarn
+    yarn2nix
+
     # Clojure
     clj2nix
     clojure
