@@ -23,8 +23,6 @@
 
     xournal
 
-    posterazor
-
     firefox
     chromium
 
@@ -39,9 +37,8 @@
     openvpn
     #googleearth
     gimp
-    posterazor
 
-    yubioath-desktop
+    #yubiauth-flutter
   ];
 
   hardware.opengl = {

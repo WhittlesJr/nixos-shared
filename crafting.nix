@@ -10,6 +10,7 @@ in
 {
   environment.systemPackages = [
     #inkscape
-    pkgs.seamly2d
+    #pkgs.seamly2d
+    pkgs.posterazor
   ];
 }
