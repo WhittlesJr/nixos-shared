@@ -13,4 +13,8 @@ in
     #pkgs.seamly2d
     pkgs.posterazor
   ];
+
+  fonts.fonts = with pkgs; [
+    clearlyU
+  ];
 }

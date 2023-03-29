@@ -20,6 +20,7 @@
     kate
     okular
     kdiff3
+    evince
 
     xournal
 
