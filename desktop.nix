@@ -5,6 +5,10 @@
   environment.systemPackages = with pkgs; [
     qalculate-gtk
 
+    wine
+    winetricks
+    playonlinux
+
     gnome.pomodoro
 
     pavucontrol
