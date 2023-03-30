@@ -8,7 +8,7 @@ clj2nix = pkgs.callPackage (pkgs.fetchFromGitHub {
     sha256 = "1cbdphk52h069zjk9q9h1dqp34g4n376g9b37zjr66a70p073f8f";
   }) {};
 
-  python = pkgs.python37.withPackages (ps: with ps; [
+  python = pkgs.python3.withPackages (ps: with ps; [
   ]);
 
 in
