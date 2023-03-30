@@ -67,6 +67,9 @@ with lib;
                proxyPass = "http://127.0.0.1:8083/";
                root = "/var/www/calibre";
                extraConfig =
+                 "proxy_busy_buffers_size        1024k;" +
+                 "proxy_buffers                  4 512k;" +
+                 "proxy_buffer_size              1024k;" +
                  "proxy_set_header X-Script-Name /calibre;" +
                  "proxy_set_header X-Scheme      $scheme;";
              };
@@ -91,6 +94,10 @@ with lib;
       };
       users.extraUsers.calibre-web.extraGroups = [ "media" ];
       #users.extraUsers.calibre-server.extraGroups = [ "media" ];
+      environment.systemPackages = with pkgs; [
+        calibre
+      ];
+
     })
 
 
