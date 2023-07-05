@@ -23,6 +23,11 @@ in
     yarn
     yarn2nix
 
+    nodePackages.pnpm
+
+    # Python / Hy
+    (hy.withPackages (ps: with ps; [ hyrule requests ]))
+
     # Clojure
     clj2nix
     clojure

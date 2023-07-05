@@ -21,6 +21,6 @@
         canTouchEfiVariables = false;
       };
     };
-    tmpOnTmpfs = true;
+    tmp.useTmpfs = true;
   };
 }

@@ -2,6 +2,7 @@
 let
   cfg = config.cloudServer;
   anythingEnabled = (cfg.enablePlex || cfg.enableCalibre || cfg.enableNextCloud);
+  adminPasswordFile = "${pkgs.writeText "cloud-admin-password" cfg.adminPassword}";
 in
 with lib;
 {
@@ -10,9 +11,12 @@ with lib;
       enablePlex      = mkEnableOption {};
       enableCalibre   = mkEnableOption {};
       enableNextCloud = mkEnableOption {};
+      enableAnki      = mkEnableOption {};
       webDomain  = mkOption { type = types.str; };
       mediaRoot  = mkOption { type = types.str; };
       adminEmail = mkOption { type = types.str; };
+      adminPassword = mkOption { type = types.str; };
+      adminPasswordFile = mkOption { type = types.str; };
     };
   };
 
@@ -100,9 +104,53 @@ with lib;
 
     })
 
+    # Anki
+    (mkIf cfg.enableAnki {
+      services.ankisyncd = {
+        enable = false;
+        host = "127.0.0.1";
+        port = 27701;
+        openFirewall = true;
+        #users = [{username = "adminhraidstn";
+        #          password = "passwordhraidstn";}];
+      };
+      services.nginx = {
+        virtualHosts = {
+          "${cfg.webDomain}" = {
+            locations."/anki" = {
+              proxyPass = "http://127.0.0.1:27701/";
+              root = "/var/www/anki";
+              extraConfig = ''
+                proxy_http_version             1.0;
+                proxy_set_header X-Script-Name /anki;
+                proxy_set_header X-Scheme      $scheme;
+                client_max_body_size           222M;
+              '';
+            };
+          };
+        };
+      };
+    })
 
     # NextCloud
     (mkIf cfg.enableNextCloud {
+      services.nginx = {
+        virtualHosts =
+          {
+            "localhost" = {
+              listen = [ { addr = "127.0.0.1"; port = 8080; } ];
+            };
+            "${cfg.webDomain}" = {
+              locations."/nextcloud" = {
+                proxyPass = "http://127.0.0.1:8080/";
+                root = "/var/www/nextcloud";
+                extraConfig =
+                  "proxy_set_header X-Script-Name /nextcloud;" +
+                  "proxy_set_header X-Scheme      $scheme;";
+              };
+            };
+          };
+      };
       services.nextcloud = {
         enable = true;
         package = pkgs.nextcloud25;
@@ -112,7 +160,7 @@ with lib;
         };
         extraAppsEnable = true;
         enableBrokenCiphersForSSE = false;
-        config.adminpassFile = "${pkgs.writeText "adminpass" "test123"}";
+        config.adminpassFile = adminPasswordFile;
         extraOptions = {
           mail_smtpmode = "sendmail";
           mail_sendmailmode = "pipe";

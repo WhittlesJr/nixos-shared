@@ -23,6 +23,8 @@ with lib;
       ];
     };
   };
+  
+  services.journald.extraConfig = "Storage=persistent";
 
   virtualisation.docker.enable = true;
 

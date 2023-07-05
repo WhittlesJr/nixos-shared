@@ -28,6 +28,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    ankisyncd
+    anki
     ripgrep
     slack
     #everdo
