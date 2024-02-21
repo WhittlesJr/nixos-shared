@@ -47,6 +47,10 @@ in
     ''
   );
 
+  environment.systemPackages = with pkgs; [
+    fortune
+  ];
+
   programs.bash = {
     enableCompletion = true;
 
