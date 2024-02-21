@@ -23,6 +23,10 @@
   };
 
   security.pam = {
+    services.sddm.gnupg = {
+      storeOnly = true;
+      enable = true;
+    };
     services.login.gnupg = {
       storeOnly = true;
       enable = true;
@@ -32,10 +36,6 @@
       debug = true;
       mode = "challenge-response";
     };
-  };
-
-  programs.ssh = {
-    startAgent = false;
   };
 
   services.openssh = {
