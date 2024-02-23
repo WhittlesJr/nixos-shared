@@ -8,6 +8,11 @@ with lib;
     "nixos-config=/run/current-system/configuration.nix"
   ];
 
+  i18n = {
+    supportedLocales = [ "all" ];
+    defaultLocale = "en_US.UTF-8";
+  };
+
   #nix.distributedBuilds = true;
   nix.buildMachines = mapAttrsToList
     (name: node: {hostName = node.config.networking.hostName;
@@ -78,8 +83,6 @@ with lib;
   ];
 
   nixpkgs.config.allowUnfree = true;
-
-  i18n.defaultLocale = "en_US.UTF-8";
 
   users.mutableUsers = false;
 
