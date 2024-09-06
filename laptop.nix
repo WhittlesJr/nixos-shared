@@ -16,9 +16,4 @@
   ];
 
   services.logind.lidSwitchExternalPower = "lock";
-
-  #services.xserver.synaptics = {
-  #  enable = true;
-  #  vertTwoFingerScroll = true;
-  #};
 }

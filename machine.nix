@@ -7,11 +7,14 @@
 
   services.fwupd.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    lm_sensors
-  ];
+  #environment.systemPackages = with pkgs; [
+  #  lm_sensors
+  #];
 
   boot = {
+    kernel.sysctl = {
+      "vm.vfs_cache_pressure" = 200;
+    };
     loader = {
       systemd-boot = {
         enable = true;

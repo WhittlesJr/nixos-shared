@@ -8,13 +8,16 @@ let
   };
 in
 {
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     #inkscape
-    #pkgs.seamly2d
-    pkgs.posterazor
+    #.seamly2d
+    posterazor
+    gimp
   ];
 
-  fonts.fonts = with pkgs; [
+  hardware.opentabletdriver.enable = true;
+
+  fonts.packages = with pkgs; [
     clearlyU
   ];
 }

@@ -56,7 +56,9 @@ in
     android-file-transfer
 
     #openaudible
-    appimage-run
+    (appimage-run.override {
+      extraPkgs = pkgs: [ pkgs.libthai ];
+    })
     audible-cli
   ];
 

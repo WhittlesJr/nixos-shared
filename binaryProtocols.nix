@@ -10,6 +10,9 @@
 
     # Sniffing
     tcpdump
+
+    minicom
+
   ];
 
   # clj-modbus & j2mod

@@ -1,6 +1,7 @@
 { lib, config, pkgs, ... }:
 {
   boot = {
+    kernelParams = [ "zfs.zfs_arc_max=2147483648" ];
     zfs = {
       requestEncryptionCredentials = true;
       forceImportAll = false;
@@ -16,11 +17,11 @@
     autoScrub.enable = true;
   };
 
-  swapDevices = [
-    {
-      device = "/dev/zvol/rpool/swap";
-    }
-  ];
+  #swapDevices = [
+  #  {
+  #    device = "/dev/zvol/rpool/swap";
+  #  }
+  #];
 
   fileSystems."/" = {
     device = "rpool/crypt/nixos";

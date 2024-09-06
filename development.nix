@@ -14,6 +14,8 @@ clj2nix = pkgs.callPackage (pkgs.fetchFromGitHub {
 in
 {
   systemd.coredump.enable = true;
+  services.spice-vdagentd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   environment.systemPackages = with pkgs; [
     inotify-tools
@@ -24,12 +26,14 @@ in
     yarn2nix
 
     nodePackages.pnpm
+    android-tools
+    quickemu
 
     # Python / Hy
     (hy.withPackages (ps: with ps; [ hyrule requests ]))
 
     # Clojure
-    clj2nix
+    #clj2nix
     clojure
     leiningen
     maven
@@ -39,18 +43,18 @@ in
     cmake
     gnumake
     gcc
-    pkgconfig
+    pkg-config
 
     # Markdown
     pandoc
     lmodern
 
     # Golang
-    go2nix
-    dep2nix
-    go
-    dep
-    glide
+    #go2nix
+    #dep2nix
+    #go
+    #dep
+    #glide
 
   ] ++ [ python ];
 }

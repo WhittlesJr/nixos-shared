@@ -1,18 +1,16 @@
-{ lib, config, pkgs, ... }:
+{ stdenv, fetchurl, lib, config, pkgs, ... }:
 {
   networking.networkmanager.enable = true;
 
   environment.systemPackages = with pkgs; [
+    #gnomeExtensions.appindicator
+
     qalculate-gtk
 
     wine
     winetricks
-    playonlinux
-
-    gnome.pomodoro
 
     pavucontrol
-    jack2
 
     phoronix-test-suite
 
@@ -25,6 +23,7 @@
     okular
     kdiff3
     evince
+    terminator
 
     xournal
 
@@ -41,7 +40,6 @@
     plexamp
     openvpn
     #googleearth
-    gimp
 
     #yubiauth-flutter
   ];
@@ -51,28 +49,19 @@
     enable = true;
   };
 
-  #services.pipewire = {
-  #  enable = true;
-  #  pulse.enable = true;
-  #  alsa = {
-  #    enable = true;
-  #    support32Bit = true;
-  #  };
-  #};
-
-  hardware.pulseaudio = {
+  services.pipewire = {
     enable = true;
-    support32Bit = true;
-    package = pkgs.pulseaudioFull;
-    #extraModules = [ pkgs.pulseaudio-modules-bt ];
+    pulse.enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
   };
 
   sound.enable = true;
 
-  security.pam.services.sddm.gnupg = {
-    storeOnly = true;
-    enable = true;
-  };
+
+  services.displayManager.sddm.enable = true;
 
   services.xserver = {
     enable = true;
