@@ -1,9 +1,10 @@
 { config, pkgs, lib, ... }:
+with lib;
 let
   steam-proton-ge =
     pkgs.stdenv.mkDerivation rec {
       pname = "proton-ge-custom";
-      version = "GE-Proton8-20";
+      version = "GE-Proton9-20";
 
       src = pkgs.fetchurl {
         url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
@@ -17,23 +18,27 @@ let
     };
 in
 {
-  environment.systemPackages = [
-    pkgs.evtest
-    pkgs.protontricks
-    pkgs.ares
-    pkgs.prismlauncher
-    pkgs.jre8
-    pkgs.lutris
-    pkgs.antimicrox
-    pkgs.betaflight-configurator
-  ];
+  options.my = {
+    role.gaming = mkEnableOption "Running videogames";
+  };
 
-  services.joycond.enable = true;
+  config = mkIf config.my.role.gaming {
+    environment.systemPackages = with pkgs; [
+      protontricks
+      jre8
+      evtest        # Monitor input events
+      ares          # Retro game emulator
+      lutris        # Installer script helper for games
+      antimicrox    # Gamepad button mapping
+    ];
 
-  # Steam
-  programs.steam.enable = true;
+    services.joycond.enable = true;
 
-  environment.sessionVariables = {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${steam-proton-ge}";
+    # Steam
+    programs.steam.enable = true;
+
+    environment.sessionVariables = {
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${steam-proton-ge}";
+    };
   };
 }

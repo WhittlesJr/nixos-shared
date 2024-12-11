@@ -1,7 +1,7 @@
 { lib, config, ... }:
 let
-  cfgS = config.services.synergy.server;
-  cfgC = config.services.synergy.client;
+  cfgS = config.my.services.synergy.server;
+  cfgC = config.my.services.synergy.client;
 
   thisAddress = config.networking.hostName;
   clientAddress = cfgS.clientNode.config.networking.hostName;
@@ -11,8 +11,9 @@ let
 in
 with lib;
 {
-  options = {
+  options.my = {
     services.synergy.server = {
+      enable       = mkEnableOption "Synergy setup using NixOps nodes";
       serverScreen = mkOption { type = types.str; };
       clientScreen = mkOption { type = types.str; };
       clientNode   = mkOption {};

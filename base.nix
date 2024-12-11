@@ -1,90 +1,78 @@
-{ nodes, lib, config, pkgs, ... }:
+{ nodes, lib, config, pkgs, is, ... }:
 with lib;
 {
-  deployment.targetHost = config.networking.hostName;
-
-  nix.nixPath = [
-    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
-    "nixos-config=/run/current-system/configuration.nix"
+  imports = [
+    ./architecture.nix
+    ./bash.nix
+    ./cloudServer.nix
+    ./desktop.nix
+    ./development.nix
+    ./digitalArt.nix
+    ./gaming.nix
+    ./laptop.nix
+    ./media.nix
+    ./shapeModeling.nix
+    ./synergy.nix
+    ./textiles.nix
   ];
+  config = mkMerge [
+    (if is.nixops then {
+      deployment.targetHost = config.networking.hostName;
 
-  i18n = {
-    supportedLocales = [ "all" ];
-    defaultLocale = "en_US.UTF-8";
-  };
+      #nix.distributedBuilds = true;
+      nix.buildMachines =
+        (mapAttrsToList
+          (name: node: {hostName = node.config.networking.hostName;
+                        system = "x86_64-linux";
+                        maxJobs = node.config.nix.settings.max-jobs;})
+          nodes);
+    } else {})
+    {
+      services.journald.extraConfig = "Storage=persistent";
+      system.copySystemConfiguration = true;
+      services.fwupd.enable = true;
+      services.thermald.enable = true;
+      systemd.coredump.enable = true;
 
-  #nix.distributedBuilds = true;
-  nix.buildMachines = mapAttrsToList
-    (name: node: {hostName = node.config.networking.hostName;
-                  system = "x86_64-linux";
-                  maxJobs = node.config.nix.settings.max-jobs;})
-    nodes;
+      boot = {
+        boot.kernel.sysctl = {
+          "vm.vfs_cache_pressure" = 200;
+        };
 
-  users.extraUsers = {
-    root = {
-      hashedPassword = lib.fileContents ./users/root.hashedPassword;
-    };
-  };
+        loader = {
+          systemd-boot = {
+            enable = true;
+            memtest86.enable = true;
+          };
+          efi = {
+            canTouchEfiVariables = false;
+          };
+        };
+        tmp.useTmpfs = true;
+      };
 
-  services.journald.extraConfig = "Storage=persistent";
+      environment.systemPackages = with pkgs; [
+        # luls
+        cowsay
+        fortune
+        sl
 
-  services.mullvad-vpn.enable = true;
+        # Machine management
+        nixops_unstable_minimal
 
-  environment.systemPackages = with pkgs; [
-    cowsay
-    dmidecode
-    dnsutils
-    fortune
-    git
-    file
-    gitAndTools.gitflow
-    gnupg
-    gparted
-    gptfdisk
-    inetutils
-    iputils
-    iotop
-    killall
-    lshw
-    lsof
-    mkpasswd
-    ncdu
-    nix-index
-    nixops_unstable_minimal
-    nixpkgs-review
-    nix-index
-    nix-prefetch
-    nix-prefetch-git
-    ntfs3g
-    openssl
-    p7zip
-    unrar
-    parted
-    patchutils
-    pciutils
-    psmisc
-    sl
-    smartmontools
-    tree
-    unzip
-    usbutils
-    vim
-    wget
-    babashka
-    zip
-  ];
 
-  nixpkgs.config.allowUnfree = true;
+        # hardware
+        smartmontools
 
-  users.mutableUsers = false;
+        # common tools
+        mkpasswd
+        tree
+        babashka
+      ];
 
-  system.copySystemConfiguration = true;
-
-  services.thermald.enable = true;
-
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 90d";
-  };
+      hardware = {
+        enableRedistributableFirmware = true;
+        enableAllFirmware = true;
+      };
+    }];
 }

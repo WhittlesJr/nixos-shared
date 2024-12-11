@@ -1,4 +1,5 @@
 { lib, config, pkgs, ... }:
+with lib;
 let
   openaudible =
     let
@@ -44,33 +45,38 @@ let
       };
 in
 {
-  environment.systemPackages = with pkgs; [
-    vlc                      # Vido + audio playing
-    audacity                 # Audio recording and editing
-    makemkv                  # Blu-ray / DVD ripping
-    ccextractor              # For makemkv
-    mkvtoolnix
-    whipper
-    picard                   # Music library management
-    handbrake                # Video compression
-    android-file-transfer
+  options.my = {
+    role.mediaArchival = mkEnableOption "Managing and archiving A/V media";
+  };
+  config = mkIf config.my.role.mediaArchival {
+    environment.systemPackages = with pkgs; [
+      vlc                      # Vido + audio playing
+      audacity                 # Audio recording and editing
+      makemkv                  # Blu-ray / DVD ripping
+      ccextractor              # For makemkv
+      mkvtoolnix
+      whipper
+      picard                   # Music library management
+      handbrake                # Video compression
+      android-file-transfer
 
-    #openaudible
-    (appimage-run.override {
-      extraPkgs = pkgs: [ pkgs.libthai ];
-    })
-    audible-cli
-  ];
+      #openaudible
+      (appimage-run.override {
+        extraPkgs = pkgs: [ pkgs.libthai ];
+      })
+      audible-cli
+    ];
 
-  # Adds blu-ray support to VLC
-  #nixpkgs.overlays = [
-  #  (
-  #    self: super: {
-  #      libbluray = super.libbluray.override {
-  #        withAACS = true;
-  #        withBDplus = true;
-  #      };
-  #    }
-  #  )
-  #];
+    # Adds blu-ray support to VLC
+    #nixpkgs.overlays = [
+    #  (
+    #    self: super: {
+    #      libbluray = super.libbluray.override {
+    #        withAACS = true;
+    #        withBDplus = true;
+    #      };
+    #    }
+    #  )
+    #];
+  };
 }

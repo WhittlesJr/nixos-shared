@@ -1,23 +1,19 @@
 { lib, config, pkgs, ... }:
 let
-  cfg = config.cloudServer;
-  anythingEnabled = (cfg.enablePlex || cfg.enableCalibre || cfg.enableNextCloud);
-  adminPasswordFile = "${pkgs.writeText "cloud-admin-password" cfg.adminPassword}";
+  cfg = config.my.services;
+  anythingEnabled = (cfg.plex || cfg.calibre || cfg.nextCloud);
 in
 with lib;
 {
-  options = {
-    cloudServer = {
-      enablePlex      = mkEnableOption {};
-      enableCalibre   = mkEnableOption {};
-      enableNextCloud = mkEnableOption {};
-      enableAnki      = mkEnableOption {};
-      webDomain  = mkOption { type = types.str; };
-      mediaRoot  = mkOption { type = types.str; };
-      adminEmail = mkOption { type = types.str; };
-      adminPassword = mkOption { type = types.str; };
-      adminPasswordFile = mkOption { type = types.str; };
-    };
+  options.my.services = {
+    plex       = mkEnableOption {};
+    calibre    = mkEnableOption {};
+    nextCloud  = mkEnableOption {};
+    anki       = mkEnableOption {};
+    webDomain  = mkOption { type = types.str; };
+    mediaRoot  = mkOption { type = types.str; };
+    adminEmail = mkOption { type = types.str; };
+    adminPasswordFile = mkOption { type = types.str; };
   };
 
   config = mkMerge [
@@ -29,7 +25,6 @@ with lib;
       };
       networking.firewall = {
         allowedTCPPorts = [ 80 443 ];
-        #allowedUDPPorts = [ 80 443 ];
       };
       security.acme = {
         acceptTerms = true;
@@ -49,7 +44,7 @@ with lib;
     })
 
     # Plex
-    (mkIf cfg.enablePlex {
+    (mkIf cfg.plex {
       services.plex = {
         enable = true;
         openFirewall = true;
@@ -63,7 +58,7 @@ with lib;
     })
 
     # Calibre
-    (mkIf cfg.enableCalibre {
+    (mkIf cfg.calibre {
       services.nginx = {
         virtualHosts =
           {"${cfg.webDomain}" = {
@@ -105,7 +100,7 @@ with lib;
     })
 
     # Anki
-    (mkIf cfg.enableAnki {
+    (mkIf cfg.anki {
       services.ankisyncd = {
         enable = false;
         host = "127.0.0.1";
@@ -133,7 +128,7 @@ with lib;
     })
 
     # NextCloud
-    (mkIf cfg.enableNextCloud {
+    (mkIf cfg.nextCloud {
       services.nginx = {
         virtualHosts =
           {
@@ -156,11 +151,11 @@ with lib;
         package = pkgs.nextcloud25;
         hostName = "localhost";
         extraApps = with pkgs.nextcloud25Packages.apps; {
-          inherit mail news contacts deck files_texteditor keeweb notes onlyoffice tasks twofactor_totp; #notify_push
+          inherit mail news contacts deck files_texteditor keeweb notes onlyoffice tasks twofactor_totp notify_push;
         };
         extraAppsEnable = true;
         enableBrokenCiphersForSSE = false;
-        config.adminpassFile = adminPasswordFile;
+        config.adminpassFile = cfg.adminPasswordFile;
         extraOptions = {
           mail_smtpmode = "sendmail";
           mail_sendmailmode = "pipe";

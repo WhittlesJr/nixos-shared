@@ -1,23 +1,26 @@
 { lib, config, pkgs, ... }:
+with lib;
 let
   inkscape = pkgs.inkscape-with-extensions.override {
     inkscapeExtensions = [
-      #pkgs.inkscape-extensions.inkcut
-      #pkgs.inkscape-extensions.silhouette
+      pkgs.inkscape-extensions.inkcut
+      pkgs.inkscape-extensions.silhouette
     ];
   };
 in
 {
-  environment.systemPackages = with pkgs; [
-    #inkscape
-    #.seamly2d
-    posterazor
-    gimp
-  ];
+  options.my = {
+    role.textileDesign = mkEnableOption "Working with textile patterns and sewing";
+  };
+  config = mkIf config.my.role.textileDesign {
+    environment.systemPackages = with pkgs; [
+      inkscape
+      seamly2d
+      #posterazor # Has insecure dependency freeimage-unstable-2021-11-01
+    ];
 
-  hardware.opentabletdriver.enable = true;
-
-  fonts.packages = with pkgs; [
-    clearlyU
-  ];
+    fonts.packages = with pkgs; [
+      clearlyU
+    ];
+  };
 }

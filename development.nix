@@ -1,60 +1,65 @@
-{ config, pkgs, ... }:
-
+{ config, lib, pkgs, ... }:
 let
-clj2nix = pkgs.callPackage (pkgs.fetchFromGitHub {
-    owner = "WhittlesJr";
-    repo = "clj2nix";
-    rev = "f379543d7d8f3bf8f2f2257ee6f91011664c052a";
-    sha256 = "1cbdphk52h069zjk9q9h1dqp34g4n376g9b37zjr66a70p073f8f";
-  }) {};
-
-  python = pkgs.python3.withPackages (ps: with ps; [
-  ]);
-
+  cfg = config.my.role.development;
+  anyDevelopment = cfg.nix || cfg.clojure || cfg.python;
 in
+with lib;
 {
-  systemd.coredump.enable = true;
-  services.spice-vdagentd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
+  options.my = {
+    role.development.nix = mkEnableOption "Developing nix / NixOS packages";
+    role.development.clojure = mkEnableOption "Developing Clojure";
+    role.development.python = mkEnableOption "Developing Python";
+  };
 
-  environment.systemPackages = with pkgs; [
-    inotify-tools
-    binutils-unwrapped
-    patchelf
+  config = mkMerge [
+    # Common
+    (mkIf anyDevelopment {
+      environment.systemPackages = with pkgs; [
+        patchutils
+        inotify-tools
+      ];
+    })
 
-    yarn
-    yarn2nix
-
-    nodePackages.pnpm
-    android-tools
-    quickemu
-
-    # Python / Hy
-    (hy.withPackages (ps: with ps; [ hyrule requests ]))
+    # Nix / NixOS
+    (mkIf cfg.nix {
+      environment.systemPackages = with pkgs; [
+        nix-index
+        nixpkgs-review
+        nix-prefetch
+        nix-prefetch-git
+      ];
+    })
 
     # Clojure
-    #clj2nix
-    clojure
-    leiningen
-    maven
-    clj-kondo
+    (mkIf cfg.clojure
+      (let
+        clj2nix = pkgs.callPackage (pkgs.fetchFromGitHub {
+          owner = "WhittlesJr";
+          repo = "clj2nix";
+          rev = "f379543d7d8f3bf8f2f2257ee6f91011664c052a";
+          sha256 = "1cbdphk52h069zjk9q9h1dqp34g4n376g9b37zjr66a70p073f8f";
+        }) {};
+      in
+        {
+          environment.systemPackages = with pkgs; [
+            clj2nix
+            clojure
+            leiningen
+            maven
+            clj-kondo
+          ];
+        }))
 
-    # C/C++
-    cmake
-    gnumake
-    gcc
-    pkg-config
-
-    # Markdown
-    pandoc
-    lmodern
-
-    # Golang
-    #go2nix
-    #dep2nix
-    #go
-    #dep
-    #glide
-
-  ] ++ [ python ];
+    # Python
+    (mkIf cfg.python
+      (let
+        python = pkgs.python3.withPackages (ps: with ps; [
+        ]);
+      in
+        {
+          environment.systemPackages = with pkgs; [
+            python
+          ];
+        }))
+  ];
 }

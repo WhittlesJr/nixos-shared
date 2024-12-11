@@ -1,19 +1,27 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
+with lib;
 {
-  services.xserver.libinput = {
-    enable = true;
-    touchpad = {
-      naturalScrolling = true;
-      disableWhileTyping = true;
-      clickMethod = "buttonareas";
-      scrollMethod = "twofinger";
-      accelProfile = "adaptive";
-    };
+  options.my = {
+    machine.isLaptop = mkEnableOption "Running videogames";
   };
 
-  environment.systemPackages = with pkgs; [
-    libinput
-  ];
+  config = mkIf config.my.machine.isLaptop {
 
-  services.logind.lidSwitchExternalPower = "lock";
+    services.xserver.libinput = {
+      enable = true;
+      touchpad = {
+        naturalScrolling = true;
+        disableWhileTyping = true;
+        clickMethod = "buttonareas";
+        scrollMethod = "twofinger";
+        accelProfile = "adaptive";
+      };
+    };
+
+    environment.systemPackages = with pkgs; [
+      libinput
+    ];
+
+    services.logind.lidSwitchExternalPower = "lock";
+  };
 }
