@@ -4,7 +4,7 @@
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
 
- environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     yubico-pam
     yubikey-personalization
   ];
