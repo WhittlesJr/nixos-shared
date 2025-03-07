@@ -3,21 +3,21 @@ with lib;
 {
   imports = [
     ./architecture.nix
-    ./accass.nix
+    ./access.nix
     ./bash.nix
-    ./cloudServer.nix
+    ./cloud-server.nix
     ./desktop.nix
     ./development.nix
-    ./digitalArt.nix
+    #./digitalArt.nix
     ./gaming.nix
     ./laptop.nix
     ./media.nix
-    ./shapeModeling.nix
+    ./3dPrinting.nix
     ./synergy.nix
     ./textiles.nix
   ];
   config = mkMerge [
-    (if is.nixops then {
+    (if false then {
       deployment.targetHost = config.networking.hostName;
 
       #nix.distributedBuilds = true;
@@ -35,23 +35,7 @@ with lib;
       services.thermald.enable = true;
       systemd.coredump.enable = true;
 
-      boot = {
-        boot.kernel.sysctl = {
-          "vm.vfs_cache_pressure" = 200;
-        };
-
-        loader = {
-          systemd-boot = {
-            enable = true;
-            memtest86.enable = true;
-          };
-          efi = {
-            canTouchEfiVariables = false;
-          };
-        };
-        tmp.useTmpfs = true;
-      };
-
+      programs.git.enable = true;
       environment.systemPackages = with pkgs; [
         # luls
         cowsay
@@ -66,6 +50,7 @@ with lib;
         smartmontools
 
         # common tools
+        vim
         mkpasswd
         tree
         babashka
@@ -73,7 +58,7 @@ with lib;
 
       hardware = {
         enableRedistributableFirmware = true;
-        enableAllFirmware = true;
+        #enableAllFirmware = true;
       };
     }];
 }

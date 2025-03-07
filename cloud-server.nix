@@ -101,14 +101,14 @@ with lib;
 
     # Anki
     (mkIf cfg.anki {
-      services.ankisyncd = {
-        enable = false;
-        host = "127.0.0.1";
-        port = 27701;
-        openFirewall = true;
-        #users = [{username = "adminhraidstn";
-        #          password = "passwordhraidstn";}];
-      };
+      #services.anki-sync-server = {
+      #  enable = false;
+      #  host = "127.0.0.1";
+      #  port = 27701;
+      #  openFirewall = true;
+      #  #users = [{username = "adminhraidstn";
+      #  #          password = "passwordhraidstn";}];
+      #};
       services.nginx = {
         virtualHosts = {
           "${cfg.webDomain}" = {

@@ -4,11 +4,11 @@ let
   steam-proton-ge =
     pkgs.stdenv.mkDerivation rec {
       pname = "proton-ge-custom";
-      version = "GE-Proton9-20";
+      version = "GE-Proton9-25";
 
       src = pkgs.fetchurl {
         url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-        hash = "sha256-6HPeL0ZUI3Jrc1vt6c5JhsZIVVP08vSKRayqKykbkog=";
+        sha256 = "0bwq384x2bizi08xnh7j3razzzihsqa98ycivfhn5f68r0mkxd2y";
       };
 
       buildCommand = ''
