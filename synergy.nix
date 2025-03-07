@@ -22,6 +22,7 @@ with lib;
     };
     services.synergy.client = {
       serverNode = mkOption {};
+      enable     = mkEnableOption "Synergy client";
     };
   };
 
