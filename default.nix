@@ -17,7 +17,7 @@ with lib;
     ./textiles.nix
   ];
   config = mkMerge [
-    (if false then {
+    (if true then {
       deployment.targetHost = config.networking.hostName;
 
       #nix.distributedBuilds = true;
