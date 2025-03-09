@@ -7,7 +7,7 @@ let
   clientAddress = cfgS.clientNode.config.networking.hostName;
 
   serverAddress = cfgC.serverNode.config.networking.hostName;
-  serverPort    = cfgC.serverNode.config.services.synergy.server.port;
+  serverPort    = cfgC.serverNode.config.my.services.synergy.server.port;
 in
 with lib;
 {
@@ -32,6 +32,7 @@ with lib;
 
       services.synergy.server = {
         autoStart = true;
+        enable = true;
       };
 
       environment.etc."synergy-server.conf" = {
@@ -55,6 +56,7 @@ with lib;
       services.synergy.client = {
         serverAddress = "${serverAddress}:${toString serverPort}";
         autoStart = true;
+        enable = true;
       };
     })
   ];

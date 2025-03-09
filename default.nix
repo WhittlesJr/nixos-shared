@@ -34,8 +34,9 @@ with lib;
       services.fwupd.enable = true;
       services.thermald.enable = true;
       systemd.coredump.enable = true;
-
+      networking.networkmanager.enable = true;
       programs.git.enable = true;
+
       environment.systemPackages = with pkgs; [
         # luls
         cowsay
