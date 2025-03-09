@@ -49,12 +49,19 @@ with lib;
 
         # hardware
         smartmontools
+        mdadm
 
         # common tools
+        unzip
+        unar
+        convmv
         vim
         mkpasswd
         tree
         babashka
+        psmisc     # For fuser
+        lsof       # Helps see processes using a file
+
       ];
 
       hardware = {

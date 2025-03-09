@@ -56,6 +56,8 @@ in
       ccextractor              # For makemkv
       mkvtoolnix
       whipper
+      asunder                  # CD  ripping
+      streamrip                # Download from Qobuz
       picard                   # Music library management
       handbrake                # Video compression
       android-file-transfer

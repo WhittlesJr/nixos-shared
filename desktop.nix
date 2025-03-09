@@ -23,6 +23,7 @@ with lib;
         remmina
 
         # Tools
+        gimp          # Image editing
         ark           # Archive handling
         kate          # Text editor
         qalculate-gtk # Calculator
@@ -33,10 +34,6 @@ with lib;
         # Browsers
         firefox
         chromium
-
-        # Media
-        vlc # Vido + audio playing
-
       ];
 
       # Audio
@@ -47,6 +44,12 @@ with lib;
           enable = true;
           support32Bit = true;
         };
+      };
+
+      # VMs
+      virtualisation.virtualbox.host = {
+        enable = true;
+        enableExtensionPack = true;
       };
 
       # Display
@@ -60,17 +63,5 @@ with lib;
           runUsingSystemd = true;
         };
       };
-
-      # Adds blu-ray support to VLC
-      nixpkgs.overlays = [
-        (
-          self: super: {
-            libbluray = super.libbluray.override {
-              withAACS = true;
-              withBDplus = true;
-            };
-          }
-        )
-      ];
     };
 }
