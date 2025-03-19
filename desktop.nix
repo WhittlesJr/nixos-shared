@@ -30,6 +30,7 @@ with lib;
         kdiff3
         xournal       # PDF Editor
         libreoffice-fresh
+        xorg.xkill
 
         # Browsers
         firefox

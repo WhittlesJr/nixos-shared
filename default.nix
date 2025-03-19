@@ -55,6 +55,7 @@ with lib;
 
         # common tools
         unzip
+        wget
         unar
         convmv
         vim

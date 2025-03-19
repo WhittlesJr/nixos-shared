@@ -55,6 +55,7 @@ in
       makemkv                  # Blu-ray / DVD ripping
       ccextractor              # For makemkv
       mkvtoolnix
+      filebot                  # Auto-renaming movie & TV files
       whipper
       asunder                  # CD  ripping
       streamrip                # Download from Qobuz

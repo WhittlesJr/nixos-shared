@@ -17,6 +17,7 @@ with lib;
       environment.systemPackages = with pkgs; [
         patchutils
         inotify-tools
+        gnumake
       ];
     })
 
