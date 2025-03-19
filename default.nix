@@ -37,6 +37,8 @@ with lib;
       networking.networkmanager.enable = true;
       programs.git.enable = true;
 
+      zramSwap.memoryPercent = 10;
+
       environment.systemPackages = with pkgs; [
         # luls
         cowsay
