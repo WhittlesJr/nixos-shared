@@ -34,9 +34,12 @@ in
 
     services.joycond.enable = true;
 
+    # Japanese games on wine
+    i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "ja_JP.UTF-8/UTF-8" ];
+    i18n.defaultLocale = "en_US.UTF-8";
+
     # Steam
     programs.steam.enable = true;
-
     environment.sessionVariables = {
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${steam-proton-ge}";
     };
