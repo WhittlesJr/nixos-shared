@@ -17,17 +17,6 @@ with lib;
     ./textiles.nix
   ];
   config = mkMerge [
-    (if true then {
-      deployment.targetHost = config.networking.hostName;
-
-      #nix.distributedBuilds = true;
-      nix.buildMachines =
-        (mapAttrsToList
-          (name: node: {hostName = node.config.networking.hostName;
-                        system = "x86_64-linux";
-                        maxJobs = node.config.nix.settings.max-jobs;})
-          nodes);
-    } else {})
     {
       services.journald.extraConfig = "Storage=persistent";
       system.copySystemConfiguration = true;
@@ -38,6 +27,8 @@ with lib;
       programs.git.enable = true;
 
       zramSwap.memoryPercent = 10;
+
+      nixpkgs.config.allowUnfree = true;
 
       environment.systemPackages = with pkgs; [
         # luls
