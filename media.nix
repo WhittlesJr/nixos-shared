@@ -52,7 +52,7 @@ in
     environment.systemPackages = with pkgs; [
       vlc                      # Vido + audio playing
       audacity                 # Audio recording and editing
-      makemkv                  # Blu-ray / DVD ripping
+      #makemkv                  # Blu-ray / DVD ripping
       ccextractor              # For makemkv
       mkvtoolnix
       filebot                  # Auto-renaming movie & TV files

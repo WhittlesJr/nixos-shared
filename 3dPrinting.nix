@@ -10,7 +10,7 @@ with lib;
     (mkIf config.my.role.modeling3D {
       environment.systemPackages = with pkgs; [
         blender
-        slic3r
+        #slic3r
         #(cura.override {
         #  plugins = with curaPlugins; [ octoprint ];
         #})

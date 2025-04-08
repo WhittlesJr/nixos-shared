@@ -23,12 +23,12 @@ with lib;
         remmina
 
         # Tools
-        gimp          # Image editing
-        ark           # Archive handling
-        kate          # Text editor
-        qalculate-gtk # Calculator
+        gimp             # Image editing
+        kdePackages.ark  # Archive handling
+        kdePackages.kate # Text editor
+        qalculate-gtk    # Calculator
         kdiff3
-        xournal       # PDF Editor
+        xournalpp        # PDF Editor
         libreoffice-fresh
         xorg.xkill
 
@@ -49,20 +49,20 @@ with lib;
 
       # VMs
       virtualisation.virtualbox.host = {
-        enable = true;
+        enable = false;
         enableExtensionPack = true;
       };
 
       # Display
       services.displayManager.sddm.enable = true;
 
+      services.desktopManager.plasma6 = {
+        enable = true;
+      };
+
       services.xserver = {
         enable = true;
         exportConfiguration = true;
-        desktopManager.plasma5 = {
-          enable = true;
-          runUsingSystemd = true;
-        };
       };
     };
 }
