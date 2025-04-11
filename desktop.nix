@@ -19,6 +19,10 @@ with lib;
         phoronix-test-suite # Graphics performance test
         vulkan-tools
 
+        # Proton
+        protonvpn-gui
+        proton-pass
+
         # RDP
         remmina
 
@@ -33,8 +37,9 @@ with lib;
         xorg.xkill
 
         # Browsers
+        brave
+        tor-browser
         firefox
-        chromium
       ];
 
       # Audio
