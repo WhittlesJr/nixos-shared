@@ -11,9 +11,7 @@ with lib;
       environment.systemPackages = with pkgs; [
         blender
         #slic3r
-        #(cura.override {
-        #  plugins = with curaPlugins; [ octoprint ];
-        #})
+        cura-appimage
         platformio
         printrun
         openscad
@@ -27,8 +25,17 @@ with lib;
           titlestatus
           #printtimegenius
         ];
+        openFirewall = true;
+        host = config.networking.hostName;
         extraConfig = {
           plugins = {
+            softwareupdate = {
+              checks = {
+                octoprint = {
+                  method = "update_script";
+                };
+              };
+            };
             temperature = {
               profiles = [{
                 bed = 100;
