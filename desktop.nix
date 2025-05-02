@@ -42,6 +42,9 @@ with lib;
         firefox
       ];
 
+      hardware.graphics.enable32Bit = true;
+      hardware.graphics.enable = true;
+
       # Audio
       services.pipewire = {
         enable = true;
