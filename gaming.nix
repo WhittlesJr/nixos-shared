@@ -30,9 +30,10 @@ in
       ares          # Retro game emulator
       lutris        # Installer script helper for games
       antimicrox    # Gamepad button mapping
+      lutris
     ];
 
-    services.joycond.enable = true;
+    services.joycond.enable = false;
 
     # Japanese games on wine
     i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "ja_JP.UTF-8/UTF-8" ];
