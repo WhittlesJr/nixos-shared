@@ -12,7 +12,7 @@ with lib;
         blender
         #slic3r
         cura-appimage
-        platformio
+        #platformio
         printrun
         openscad
       ];
