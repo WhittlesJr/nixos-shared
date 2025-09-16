@@ -51,8 +51,8 @@ in
   config = mkIf config.my.role.mediaArchival {
     environment.systemPackages = with pkgs; [
       vlc                      # Vido + audio playing
-      #audacity                 # Audio recording and editing
-      #makemkv                  # Blu-ray / DVD ripping
+      audacity                 # Audio recording and editing
+      makemkv                  # Blu-ray / DVD ripping
       ccextractor              # For makemkv
       mkvtoolnix
       filebot                  # Auto-renaming movie & TV files
