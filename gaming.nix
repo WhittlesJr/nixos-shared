@@ -18,31 +18,35 @@ let
     };
 in
 {
+  imports = [ ./lib/nix-tmodloader/module ];
+
   options.my = {
     role.gaming = mkEnableOption "Running videogames";
   };
 
-  config = mkIf config.my.role.gaming {
-    environment.systemPackages = with pkgs; [
-      protontricks
-      jre8
-      evtest        # Monitor input events
-      ares          # Retro game emulator
-      lutris        # Installer script helper for games
-      antimicrox    # Gamepad button mapping
-      lutris
-    ];
+  config = mkMerge[
+    (mkIf config.my.role.gaming {
+      environment.systemPackages = with pkgs; [
+        protontricks
+        jre8
+        evtest        # Monitor input events
+        ares          # Retro game emulator
+        lutris        # Installer script helper for games
+        antimicrox    # Gamepad button mapping
+        lutris
+      ];
 
-    services.joycond.enable = false;
+      services.joycond.enable = false;
 
-    # Japanese games on wine
-    i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" "ja_JP.UTF-8/UTF-8" ];
-    i18n.defaultLocale = "en_US.UTF-8";
+      # Japanese games on wine
+      i18n.extraLocales = [ "ja_JP.UTF-8/UTF-8" ];
+      i18n.defaultLocale = "en_US.UTF-8";
 
-    # Steam
-    programs.steam.enable = true;
-    environment.sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${steam-proton-ge}";
-    };
-  };
+      # Steam
+      programs.steam.enable = true;
+      environment.sessionVariables = {
+        STEAM_EXTRA_COMPAT_TOOLS_PATHS = "${steam-proton-ge}";
+      };
+    })
+  ];
 }
