@@ -18,6 +18,7 @@ with lib;
   ];
   config = mkMerge [
     {
+      boot.loader.systemd-boot.memtest86.enable = true;
       services.journald.extraConfig = "Storage=persistent";
       system.copySystemConfiguration = true;
       services.fwupd.enable = true;
@@ -30,6 +31,8 @@ with lib;
 
       nixpkgs.config.allowUnfree = true;
 
+      nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
       environment.systemPackages = with pkgs; [
         # luls
         cowsay
@@ -39,12 +42,12 @@ with lib;
         # Machine management
         nixops_unstable_minimal
 
-
         # hardware
         smartmontools
         mdadm
 
         # common tools
+        nettools
         unzip
         wget
         unar
