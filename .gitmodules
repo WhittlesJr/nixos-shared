@@ -1,0 +1,3 @@
+[submodule "lib/nix-tmodloader"]
+	path = lib/nix-tmodloader
+	url = https://github.com/andOrlando/nix-tmodloader.git
