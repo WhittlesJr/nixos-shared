@@ -4,25 +4,21 @@ let
   cfgC = config.my.services.deskflow.client;
 
   thisAddress = config.networking.hostName;
-  clientAddress = cfgS.clientNode.config.networking.hostName;
-
-  serverAddress = cfgC.serverNode.config.networking.hostName;
-  serverPort    = cfgC.serverNode.config.my.services.deskflow.server.port;
 in
 with lib;
 {
   options.my = {
     services.deskflow.server = {
-      enable       = mkEnableOption "Synergy setup using NixOps nodes";
-      serverScreen = mkOption { type = types.str; };
-      clientScreen = mkOption { type = types.str; };
-      clientNode   = mkOption {};
-      port         = mkOption { type = types.port;
-                                default = 24800;  };
+      enable       = mkEnableOption "Deskflow server for keyboard/mouse sharing";
+      serverScreen = mkOption { type = types.str; description = "Direction to client (left/right/up/down)"; };
+      clientScreen = mkOption { type = types.str; description = "Direction from client to server"; };
+      clientHostName = mkOption { type = types.str; description = "Hostname of the client machine"; };
+      port         = mkOption { type = types.port; default = 24800; };
     };
     services.deskflow.client = {
-      serverNode = mkOption {};
-      enable     = mkEnableOption "Synergy client";
+      enable         = mkEnableOption "Deskflow client";
+      serverHostName = mkOption { type = types.str; description = "Hostname of the server machine"; };
+      serverPort     = mkOption { type = types.port; default = 24800; };
     };
   };
 
@@ -40,13 +36,13 @@ with lib;
 
           section: screens
             ${thisAddress}:
-            ${clientAddress}:
+            ${cfgS.clientHostName}:
           end
 
           section: links
             ${thisAddress}:
-              ${cfgS.clientScreen} = ${clientAddress}
-            ${clientAddress}:
+              ${cfgS.clientScreen} = ${cfgS.clientHostName}
+            ${cfgS.clientHostName}:
               ${cfgS.serverScreen} = ${thisAddress}
           end
         '';
@@ -54,7 +50,7 @@ with lib;
     })
     (mkIf cfgC.enable {
       services.deskflow.client = {
-        serverAddress = "${serverAddress}:${toString serverPort}";
+        serverAddress = "${cfgC.serverHostName}:${toString cfgC.serverPort}";
         autoStart = true;
         enable = true;
       };

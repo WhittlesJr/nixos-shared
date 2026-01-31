@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, modulesPath, ... }:
 
 # Color definitions (taken from Color Bash Prompt HowTo).
 # Some colors might look different of some terminals.
@@ -42,7 +42,7 @@ let
 in
 {
   environment.etc."inputrc".text = lib.mkForce (
-    builtins.readFile <nixpkgs/nixos/modules/programs/bash/inputrc> + ''
+    builtins.readFile "${modulesPath}/programs/bash/inputrc" + ''
       set completion-ignore-case on
     ''
   );

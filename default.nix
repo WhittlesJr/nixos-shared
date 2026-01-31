@@ -1,4 +1,4 @@
-{ nodes, lib, config, pkgs, is, ... }:
+{ lib, config, pkgs, ... }:
 with lib;
 {
   imports = [
@@ -20,7 +20,7 @@ with lib;
     {
       boot.loader.systemd-boot.memtest86.enable = true;
       services.journald.extraConfig = "Storage=persistent";
-      system.copySystemConfiguration = true;
+      # system.copySystemConfiguration is not supported with flakes
       services.fwupd.enable = true;
       services.thermald.enable = true;
       systemd.coredump.enable = true;
