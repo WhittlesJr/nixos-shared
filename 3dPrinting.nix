@@ -9,10 +9,9 @@ with lib;
   config = mkMerge[
     (mkIf config.my.role.modeling3D {
       environment.systemPackages = with pkgs; [
+        platformio
         blender
-        #slic3r
-        cura-appimage
-        #platformio
+        super-slicer
         printrun
         openscad
       ];
@@ -26,7 +25,7 @@ with lib;
           #printtimegenius
         ];
         openFirewall = true;
-        host = config.networking.hostName;
+        host = null;
         extraConfig = {
           plugins = {
             softwareupdate = {
