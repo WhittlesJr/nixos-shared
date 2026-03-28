@@ -12,6 +12,7 @@ with lib;
         platformio
         blender
         super-slicer
+        orca-slicer
         printrun
         openscad
       ];
