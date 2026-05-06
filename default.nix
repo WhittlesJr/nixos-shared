@@ -13,7 +13,6 @@ with lib;
     ./laptop.nix
     ./media.nix
     ./3dPrinting.nix
-    ./synergy.nix
     ./textiles.nix
   ];
   config = mkMerge [
