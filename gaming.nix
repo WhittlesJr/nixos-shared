@@ -29,9 +29,8 @@ in
         jre8
         evtest        # Monitor input events
         ares          # Retro game emulator
-        lutris        # Installer script helper for games
+        #lutris        # Installer script helper for games
         antimicrox    # Gamepad button mapping
-        lutris
       ];
 
       services.joycond.enable = false;
