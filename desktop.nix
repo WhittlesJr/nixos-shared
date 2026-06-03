@@ -20,7 +20,7 @@ with lib;
         vulkan-tools
 
         # Proton
-        protonvpn-gui
+        proton-vpn
         proton-pass
 
         # RDP
@@ -34,7 +34,7 @@ with lib;
         kdiff3
         xournalpp        # PDF Editor
         libreoffice-fresh
-        xorg.xkill
+        xkill
 
         # Browsers
         brave
