@@ -38,10 +38,7 @@ with lib;
 
         # Browsers
         brave
-        tor-browser
         firefox
-        google-chrome
-
       ];
 
       hardware.graphics.enable32Bit = true;
